@@ -19,7 +19,7 @@ public class UserListController {
     @RequestMapping("/list")
     public String showUserList(Model model) {
         List<User> allUsers = userRepository.findAll();
-        model.addAttribute("users", allUsers);
+        model.addAttribute("usersList", allUsers);
         return "userList";
     }
 
