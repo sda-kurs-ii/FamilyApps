@@ -1,7 +1,8 @@
 package com.sda.group.family_apps.roles;
 
+import com.sda.group.family_apps.BaseEntity;
 import lombok.NoArgsConstructor;
-import pl.sda.springtraining.BaseEntity;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
