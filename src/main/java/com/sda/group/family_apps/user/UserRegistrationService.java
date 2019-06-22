@@ -40,11 +40,7 @@ public class UserRegistrationService {
         return User.builder()
                 .username(dto.getUsername())
                 .birthDate(dto.getBirthDate())
-                .firstName(dto.getFirstName())
-                .lastName(dto.getLastName())
-                .pesel(dto.getPesel())
-                .phone(dto.getPhone())
-                .preferEmails(dto.isPreferEmails())
+                .preferEmails(dto.getPreferEmails())
                 .userAddress(address)
                 .roles(Sets.newHashSet(
                         roleRepository.findByRoleName("ROLE_USER")))
@@ -52,13 +48,4 @@ public class UserRegistrationService {
                 .build();
 
     }
-
-//    @PostConstruct
-//    public void initializeRoles(){
-//        if (roleRepository.count() == 0){
-//            roleRepository.save(new Role("ROLE_USER"));
-//            roleRepository.save(new Role("ROLE_ADMIN"));
-//        }
-//    }
-
 }
