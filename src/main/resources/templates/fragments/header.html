@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--todo dodać header do wszystkich stron-->
+<div th:fragment="headercss">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="/css/signin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</div>
+<div th:fragment="header-fragment">
+    <div class="topnav">
+        <a th:if="!${@userContext.isLoggedIn()}" href="/register">Rejestracja</a>
+        <a th:if="!${@userContext.isLoggedIn()}" href="/login">Logowanie</a>
+        <a th:if="${@userContext.isAdmin()}" href="/admin/product">Dodaj produkt</a>
+        <a th:if="${@userContext.isLoggedIn()}" href="/products">Produkty</a>
+        <a th:if="${@userContext.isLoggedIn()}" style="float: right" href="/logout">Wyloguj</a>
+        <p style="color: white; float: right" th:if="${@userContext.isLoggedIn()}"
+           th:text="${@userContext.provideUsername()}">User</p>
+    </div>
+</div>
