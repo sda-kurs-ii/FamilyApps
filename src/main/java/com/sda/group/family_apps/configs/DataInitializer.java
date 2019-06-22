@@ -30,12 +30,14 @@ public class DataInitializer implements InitializingBean {
             Role role_admin = roleRepository.save(new Role("ROLE_ADMIN"));
             User user = User.builder()
                     .username("admin")
+                    .avatar("https://cdn1.iconfinder.com/data/icons/man-user-human-profile-avatar-business-person/100/09-1User_3-4-512.png")
                     .passwordHash(passwordEncoder.encode("admin"))
                     .roles(Sets.newHashSet(role_admin))
                     .build();
             userRepository.save(user);
             User normalUser = User.builder()
                     .username("user")
+                    .avatar("https://cdn0.iconfinder.com/data/icons/man-user-human-profile-avatar-person-business/100/10B-1User-512.png")
                     .passwordHash(passwordEncoder.encode("user"))
                     .roles(Sets.newHashSet(role_user))
                     .build();

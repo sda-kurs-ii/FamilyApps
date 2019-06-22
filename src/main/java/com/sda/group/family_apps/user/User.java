@@ -20,7 +20,7 @@ public class User extends BaseEntity {
     private String username;
     private String passwordHash;
     private String birthDate;
-    private String preferEmails;
+    private String email;
     @Embedded
     private UserAddress userAddress;
     private String avatar;

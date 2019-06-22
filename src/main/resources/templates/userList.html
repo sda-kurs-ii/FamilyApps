@@ -10,10 +10,16 @@
 
 Lista
 <hr>
-<ul>
-    <li th:each="item : ${users}" th:text="${item.id} +' '+${item.username}"></li>
-</ul>
-
-
+<div>
+    <ul>
+        <li th:each="item : ${usersList}"><a th:text="${item.id} +' '+${item.username}" th:href="${item.username}"></a>
+        </li>
+    </ul>
+</div>
+<div th:if="${user != null}">
+    <p th:text="${user.username}"></p>
+    <img th:src="${user.avatar}" height="100px" width="100px">
+    <p th:text="${user.birthDate}"></p>
+</div>
 </body>
 </html>
