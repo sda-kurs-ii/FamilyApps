@@ -1,8 +1,8 @@
 package com.sda.group.family_apps.user;
 
+import com.sda.group.family_apps.BaseEntity;
+import com.sda.group.family_apps.roles.Role;
 import lombok.*;
-import pl.sda.springtraining.BaseEntity;
-import pl.sda.springtraining.roles.Role;
 
 import javax.persistence.*;
 import java.util.HashSet;

@@ -1,10 +1,11 @@
 package com.sda.group.family_apps.user;
 
 import com.google.common.collect.Sets;
+import com.sda.group.family_apps.roles.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.sda.springtraining.roles.RoleRepository;
+
 
 @Service
 public class UserRegistrationService {
