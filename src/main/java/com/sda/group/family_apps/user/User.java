@@ -19,9 +19,9 @@ public class User extends BaseEntity {
 
     private String username;
     private String passwordHash;
-    @Embedded
     private String birthDate;
     private String preferEmails;
+    @Embedded
     private UserAddress userAddress;
     @ManyToMany
     @JoinTable(name = "users_roles")
