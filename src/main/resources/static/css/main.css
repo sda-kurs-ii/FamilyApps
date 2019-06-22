@@ -1,20 +1,20 @@
-h1{
-    color:#0000FF;
+h1 {
+    color: #0000FF;
 }
 
-h2{
-    color:#FF0000;
+h2 {
+    color: #FF0000;
 }
 
-footer{
-    margin-top:60px;
+footer {
+    margin-top: 60px;
 }
 
 body {
     font-family: "Lato", sans-serif;
 }
 
-.error{
+.error {
     color: #FF0000;
 }
 
@@ -53,8 +53,13 @@ body {
 }
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
 /* Add a black background color to the top navigation */
@@ -71,6 +76,22 @@ body {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+
+.topnav p {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav img {
+    float: right;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
 }
 
 /* Change the color of links on hover */
