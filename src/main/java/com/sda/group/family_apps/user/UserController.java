@@ -32,6 +32,6 @@ public class UserController {
             return "registerForm";
         }
         userRegistrationService.registerUser(userDto);
-        return "index";
+        return "loginForm";
     }
 }

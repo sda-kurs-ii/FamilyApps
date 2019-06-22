@@ -45,6 +45,7 @@ public class UserRegistrationService {
                 .roles(Sets.newHashSet(
                         roleRepository.findByRoleName("ROLE_USER")))
                 .passwordHash(encoder.encode(dto.getPassword()))
+                .avatar(dto.getAvatar())
                 .build();
 
     }
