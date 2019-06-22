@@ -15,6 +15,7 @@
         <a th:if="${@userContext.isAdmin()}" href="/admin/product">Dodaj produkt</a>
         <a th:if="${@userContext.isLoggedIn()}" href="/products">Produkty</a>
         <a th:if="${@userContext.isLoggedIn()}" style="float: right" href="/logout">Wyloguj</a>
+        <img src="${@userContext.i}"
         <p style="color: white; float: right" th:if="${@userContext.isLoggedIn()}"
            th:text="${@userContext.provideUsername()}">User</p>
     </div>

@@ -20,4 +20,5 @@ public class UserRegistrationDTO {
     private String city;
     private String street;
     private Countries country;
+    private String avatar;
 }
