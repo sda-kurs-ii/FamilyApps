@@ -23,6 +23,7 @@ public class User extends BaseEntity {
     private String preferEmails;
     @Embedded
     private UserAddress userAddress;
+    private String avatar;
     @ManyToMany
     @JoinTable(name = "users_roles")
     private Set<Role> roles = new HashSet<>();
