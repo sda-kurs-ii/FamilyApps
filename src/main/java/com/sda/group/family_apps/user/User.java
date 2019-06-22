@@ -17,16 +17,14 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends BaseEntity {
 
-
-    @Embedded
-    private UserAddress userAddress;
-    private String birthDate;
     private String username;
     private String passwordHash;
-    private String email;
+    private String birthDate;
+    private String preferEmails;
+    @Embedded
+    private UserAddress userAddress;
     private String avatar;
     @ManyToMany
     @JoinTable(name = "users_roles")
     private Set<Role> roles = new HashSet<>();
-
 }
