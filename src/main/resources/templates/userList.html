@@ -4,22 +4,52 @@
     <meta charset="UTF-8">
     <title>Users</title>
     <div th:replace="fragments/header :: headercss"></div>
+    <style>
+        #wrapper {
+            display: flex;
+        }
+
+        #left {
+            flex: 0 0 65%;
+        }
+
+        #right {
+            flex: 1;
+        }
+        .p2 {
+            margin-top: 1em;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="fragments/header :: header-fragment"></div>
+<div id="wrapper">
+    <div id="left">
+        <p class="p2">Lista użytkowników</p>
+        <hr>
+        <div>
+            <ul>
+                <li th:each="item : ${usersList}"><a th:text="${item.id} +' '+${item.username}"
+                                                     th:href="${item.username}"></a>
+                </li>
+            </ul>
 
-Lista
-<hr>
-<div>
-    <ul>
-        <li th:each="item : ${usersList}"><a th:text="${item.id} +' '+${item.username}" th:href="${item.username}"></a>
-        </li>
-    </ul>
+        </div>
+    </div>
+    <div id="right">
+        <div th:if="${user != null}">
+            <p class="p2" th:text="${user.username}"></p><br>
+            <img th:src="${user.avatar}" height="100px" width="100px"><br>
+            <p th:text="${'Data urodzenia: ' + user.birthDate}"></p>
+            <p th:text=" ${'E-mail: ' + user.email}"></p>
+            <p th:text=" ${'Adres:  ul. ' + user.userAddress.getStreet() + ', ' + user.userAddress.getZipCode()
+           + ', '  + user.userAddress.getCity() + ', ' + user.userAddress.getCountry()}"></p>
+        </div>
+    </div>
 </div>
-<div th:if="${user != null}">
-    <p th:text="${user.username}"></p>
-    <img th:src="${user.avatar}" height="100px" width="100px">
-    <p th:text="${user.birthDate}"></p>
-</div>
+
+
 </body>
 </html>

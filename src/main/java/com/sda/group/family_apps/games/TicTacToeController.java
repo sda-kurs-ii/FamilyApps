@@ -15,6 +15,8 @@ public class TicTacToeController {
     public String showTicTacToeGame(Model model) {
         ticTacToe = new TicTacToe();
         model.addAttribute("gameBoard", ticTacToe.getBoard());
+        model.addAttribute("X", "true");
+        model.addAttribute("O", "false");
         return "tictactoe";
     }
 
@@ -25,6 +27,8 @@ public class TicTacToeController {
             model.addAttribute("winner", ticTacToe.gameValidation(ticTacToe.getBoard(), player));
             ticTacToe = new TicTacToe();
             model.addAttribute("gameBoard", ticTacToe.getBoard());
+            model.addAttribute("X", "true");
+            model.addAttribute("O", "false");
             return "tictactoe";
         } else {
             model.addAttribute("gameBoard", ticTacToe.getBoard());
