@@ -10,10 +10,11 @@ import javax.validation.constraints.Size;
 @Setter
 public class UserRegistrationDTO {
 
-    @Size(min=3, max=15, message = "imie powinno miec od 3 do 15 znakow")
+    @Size(min=3, max=15, message = "Nick powinien miec od 3 do 15 znakow")
     private String username;
-    @Email
+    @Email(message = "Niepoprawny e-mail")
     private String preferEmails;
+    @ValidPassword
     private String password;
     private String birthDate;
     private String zipCode;

@@ -10,9 +10,11 @@
 <form class="form-signin" method="post" action="/register" th:object="${userDto}">
     <!--$ oznacza szukanie w modelu po takim kluczu-->
     Nick: <input class="form-control" type="text" th:field="*{username}">
-    <span th:errors="*{username}"></span> <br><!--todo uzupelnic komunikaty bledow-->
-    Email: <input class="form-control" type="text" th:field="*{preferEmails}"><br>
-    Hasło: <input class="form-control" type="password" th:field="*{password}"><br>
+    <span style="color:red" th:errors="*{username}"></span> <br><!--todo uzupelnic komunikaty bledow-->
+    Email: <input class="form-control" type="text" th:field="*{preferEmails}">
+    <span style="color:red" th:errors="*{preferEmails}"></span> <br>
+    Hasło: <input class="form-control" type="password" th:field="*{password}">
+    <span style="color:red" th:errors="*{password}"></span> <br>
     Avatar link: <input class="form-control" type="text" th:field="*{avatar}"><br>
     Data Urodzenia: <input class="form-control" type="text" th:field="*{birthDate}"><br>
     Miasto:<input class="form-control" type="text" th:field="*{city}"><br>
