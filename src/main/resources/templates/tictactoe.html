@@ -8,10 +8,7 @@
 <body>
 <div th:replace="fragments/header :: header-fragment"></div>
 
-Kółko i krzyżyk View
-
-
-<p th:text="${winner}"></p>
+<H2 th:text="${winner}" style="align-content: center">Zapraszamy do gry</H2>
 <div id="game">
     <form action="/ticTacToe" method="POST">
         <input type="checkbox" name="player" value="X" th:checked="${X}" th:selected="${O}">X
