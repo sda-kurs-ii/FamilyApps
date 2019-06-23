@@ -22,5 +22,6 @@ public class GameType extends BaseEntity {
     private String image;
     private Integer minPlayers;
     private Integer maxPlayers;
+    private String gameHref;
 
 }

@@ -57,6 +57,7 @@ public class DataInitializer implements InitializingBean {
                     .image("https://www.panzabawka.pl/19867-large_default/rebel-dobb01pl-gra-karciana-dobble.jpg")
                     .maxPlayers(2)
                     .minPlayers(1)
+                    .gameHref("/dobble")
                     .build();
             gameTypeRepository.save(dobble);
 
@@ -66,6 +67,7 @@ public class DataInitializer implements InitializingBean {
                     .image("https://cdn.pixabay.com/photo/2013/07/12/15/56/tic-tac-toe-150614_960_720.png")
                     .minPlayers(1)
                     .maxPlayers(2)
+                    .gameHref("/ticTacToe")
                     .build();
             gameTypeRepository.save(ticTacToe);
         }
