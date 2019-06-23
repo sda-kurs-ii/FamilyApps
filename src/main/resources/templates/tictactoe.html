@@ -9,5 +9,23 @@
 <div th:replace="fragments/header :: header-fragment"></div>
 
 Kółko i krzyżyk View
+
+
+<p th:text="${winner}"></p>
+<div id="game">
+    <form action="/ticTacToe" method="POST">
+        <input type="checkbox" name="player" value="X" th:checked="${X}" th:selected="${O}">X
+        <input type="checkbox" name="player" value="O" th:checked="${O}" th:selected="${X}">O
+        <br>
+        <div style="width: 150px; height: 150px; align-content: center">
+            <button th:each="item,iterStat : ${gameBoard}" name="board" th:value="${iterStat.index}" th:text="${item}"
+                    th:disabled="${item != null}"
+                    style="height: 50px; width: 50px">
+            </button>
+        </div>
+    </form>
+</div>
+
+
 </body>
 </html>
