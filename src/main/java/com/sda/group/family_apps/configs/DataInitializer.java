@@ -1,6 +1,8 @@
 package com.sda.group.family_apps.configs;
 
 import com.google.common.collect.Sets;
+import com.sda.group.family_apps.games.GameType;
+import com.sda.group.family_apps.games.GameTypeRepository;
 import com.sda.group.family_apps.roles.Role;
 import com.sda.group.family_apps.roles.RoleRepository;
 import com.sda.group.family_apps.user.User;
@@ -23,6 +25,9 @@ public class DataInitializer implements InitializingBean {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private GameTypeRepository gameTypeRepository;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (roleRepository.count() == 0) {
@@ -42,6 +47,29 @@ public class DataInitializer implements InitializingBean {
                     .roles(Sets.newHashSet(role_user))
                     .build();
             userRepository.save(normalUser);
+
+        }
+
+        if (gameTypeRepository.count() == 0 ){
+            GameType dobble = GameType.builder()
+                    .name("Dobble")
+                    .description("Some quick example text to build on the card title and make up the bulk of the card's content.")
+                    .image("https://www.panzabawka.pl/19867-large_default/rebel-dobb01pl-gra-karciana-dobble.jpg")
+                    .maxPlayers(2)
+                    .minPlayers(1)
+                    .gameHref("/dobble")
+                    .build();
+            gameTypeRepository.save(dobble);
+
+            GameType ticTacToe = GameType.builder()
+                    .name("TicTacToe")
+                    .description("To gra, w której nie liczy się wiedza i umiejętności, ale spostrzegawczość, koncentracja i refleks!")
+                    .image("https://cdn.pixabay.com/photo/2013/07/12/15/56/tic-tac-toe-150614_960_720.png")
+                    .minPlayers(1)
+                    .maxPlayers(2)
+                    .gameHref("/ticTacToe")
+                    .build();
+            gameTypeRepository.save(ticTacToe);
         }
     }
 
