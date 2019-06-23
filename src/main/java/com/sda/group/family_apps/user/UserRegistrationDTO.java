@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -16,7 +17,9 @@ public class UserRegistrationDTO {
     private String preferEmails;
     @ValidPassword
     private String password;
+    @Pattern(regexp = "([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/[0-9]{4}", message = "Użyj formatu dd/mm/yyyy")
     private String birthDate;
+    @Pattern(regexp = "([0-9]{2}-[0-9]{3})", message = "Błędny kod")
     private String zipCode;
     private String city;
     private String street;
