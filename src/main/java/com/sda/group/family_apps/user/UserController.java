@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -16,6 +17,9 @@ public class UserController {
 
     @Autowired
     private UserRegistrationService userRegistrationService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping(value = "/register")
     public String showForm(Model model) {
@@ -34,5 +38,11 @@ public class UserController {
         }
         userRegistrationService.registerUser(userDto);
         return "loginForm";
+    }
+
+    @GetMapping(value = "/{username}")
+    public String showAccountDetails(Model model, @PathVariable String username){
+        model.addAttribute("user", userRepository.findUserByUsername(username));
+        return "userDetails";
     }
 }

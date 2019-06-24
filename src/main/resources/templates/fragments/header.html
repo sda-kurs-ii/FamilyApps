@@ -20,7 +20,7 @@
         <a th:if="!${@userContext.isLoggedIn()}" href="/login" style="float: right">Logowanie</a>
         <a th:if="${@userContext.isLoggedIn()}" style="float: right" href="/logout">Wyloguj</a>
         <a th:if="${@userContext.isLoggedIn()}" style="color: white; float: right"
-           th:text="${@userContext.provideUsername()}"></a>
+           th:text="${@userContext.provideUsername()}" th:href="${@userContext.provideUsername()}"></a>
         <img th:src="${@userContext.provideAvatar()}" class="rounded-circle">
 
     </div>

@@ -16,16 +16,18 @@
     Hasło: <input class="form-control" type="password" th:field="*{password}">
     <span style="color:red" th:errors="*{password}"></span> <br>
     Avatar link: <input class="form-control" type="text" th:field="*{avatar}"><br>
-    Data Urodzenia: <input class="form-control" type="text" th:field="*{birthDate}"><br>
+    Data Urodzenia: <input class="form-control" type="text" th:field="*{birthDate}">
+    <span style="color:red" th:errors="*{birthDate}"></span> <br>
     Miasto:<input class="form-control" type="text" th:field="*{city}"><br>
-    Kod pocztowy:<input class="form-control" type="text" th:field="*{zipCode}"><br>
+    Kod pocztowy:<input class="form-control" type="text" th:field="*{zipCode}">
+    <span style="color:red" th:errors="*{zipCode}"></span> <br>
     Ulica:<input class="form-control" type="text" th:field="*{street}"><br>
     Kraj pochodzenia:<select class="form-control" th:field="*{country}">
     <option value="''" th:text="wybierz"></option>
     <option th:each="country : ${countries}" th:value="${country}"
             th:text="${country}"></option>
 </select><br>
-    <button class="btn btn-lg btn-primary btn-block">Wyślij</button>
+    <button class="btn btn-lg btn-primary btn-block">Zarejestruj się</button>
 </form>
 </body>
 </html>

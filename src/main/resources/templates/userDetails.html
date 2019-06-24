@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <div th:replace="fragments/header :: headercss"></div>
+    <style>
+        #wrapper {
+            display: flex;
+        }
+
+        #left {
+            flex: 0 0 40%;
+        }
+
+        #right {
+            flex: 1;
+        }
+
+        .p2 {
+            margin-top: 1em;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .p3 {
+            margin-left: 1em;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/header :: header-fragment"></div>
+<div id="wrapper">
+    <div id="left">
+
+        <p class="p2" th:text="${user.username}"></p><br>
+        <img th:src="${user.avatar}" height="100px" width="100px"><br>
+        <p class="p3" th:text="${'Data urodzenia: ' + user.birthDate}"></p>
+        <p class="p3" th:text=" ${'E-mail: ' + user.email}"></p>
+        <div th:if="${user.userAddress != null}">
+            <p class="p3" th:text=" ${'Adres:  ul.' + user.userAddress.street + ', ' + user.userAddress.zipCode
+           + ', '  + user.userAddress.city + ', ' + user.userAddress.country}"></p>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block">Edytuj swoje dane</button>
+    </div>
+    <div id="right">
+
+
+    </div>
+</div>
+
+
+</body>
+</html>
