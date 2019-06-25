@@ -61,7 +61,17 @@ public class TicTacToeController {
     }
 
     private void prepareModel(Model model, String player) {
-        model.addAttribute("message", "Ruch zawodnika: " + player);
+        String message = "Ruch zawodnika: " + player;
+        int i = 0;
+        for (String button : ticTacToe.getBoard()) {
+            if (button != null) {
+                i += 1;
+            }
+            if (i == 9) {
+                message = "Remis!";
+            }
+        }
+        model.addAttribute("message", message);
         model.addAttribute("player", player);
     }
 
