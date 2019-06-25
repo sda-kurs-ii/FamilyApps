@@ -47,7 +47,22 @@ public class DataInitializer implements InitializingBean {
                     .roles(Sets.newHashSet(role_user))
                     .build();
             userRepository.save(normalUser);
-
+            User testUser1 = User.builder()
+                    .username("Zuzia")
+                    .avatar("http://etui-gsm.pl/wp-content/uploads/2017/11/minion_1.png")
+                    .passwordHash(passwordEncoder.encode("Zuzia9"))
+                    .roles(Sets.newHashSet(role_user))
+                    .email("zuzia@zuzia.pl")
+                    .build();
+            userRepository.save(testUser1);
+            User testUser2 = User.builder()
+                    .username("Marysia")
+                    .avatar("http://www.tolo.com.pl/galerie/d/digibirds-ptaszek-amber-s8802_12737.jpg")
+                    .passwordHash(passwordEncoder.encode("Marysia6"))
+                    .roles(Sets.newHashSet(role_user))
+                    .email("marysia@marysia.pl")
+                    .build();
+            userRepository.save(testUser2);
         }
 
         if (gameTypeRepository.count() == 0 ){
