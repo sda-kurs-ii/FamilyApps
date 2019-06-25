@@ -1,17 +1,39 @@
 package com.sda.group.family_apps.games;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.sda.group.family_apps.BaseEntity;
+import lombok.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class TicTacToe {
+@Entity
+@ToString
+@Builder
+@Table(name = "tictactoe_games")
+public class TicTacToe extends BaseEntity {
 
+    private String gameSequence = "";
+    private String gameOwner;
+    private String guest;
+    private GameStatus gameStatus = GameStatus.NEW;
+    private String winner;
+    private LocalDateTime startDate = LocalDateTime.now();
+    private LocalDateTime endDate;
+    @Transient
     private String[] board = new String[9];
 
-    public String gameValidation(String[] boardCurrent, String player) {
+    String gameValidation(String[] boardCurrent, String player) {
 
         if (player.equalsIgnoreCase(boardCurrent[0]) &&
                 player.equalsIgnoreCase(boardCurrent[1]) &&

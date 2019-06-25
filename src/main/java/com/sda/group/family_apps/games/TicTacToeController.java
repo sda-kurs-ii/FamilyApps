@@ -1,45 +1,90 @@
 package com.sda.group.family_apps.games;
 
+import com.sda.group.family_apps.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.LocalDateTime;
 
 @Controller
 public class TicTacToeController {
 
-    TicTacToe ticTacToe;
+    @Autowired
+    private TicTacToeRepository ticTacToeRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    private TicTacToe ticTacToe;
 
     @GetMapping(value = "/ticTacToe")
     public String showTicTacToeGame(Model model) {
-        ticTacToe = new TicTacToe();
-        model.addAttribute("gameBoard", ticTacToe.getBoard());
-        model.addAttribute("X", "true");
-        model.addAttribute("O", "false");
+        model.addAttribute("message", "Zapraszamy do gry");
         return "tictactoe";
     }
 
-    @PostMapping(value = "/ticTacToe")
-    public String actionTicTacToeGame(Model model, @ModelAttribute(name = "player") String player, @ModelAttribute(name = "board") String board) {
-        ticTacToe.getBoard()[Integer.parseInt(board)] = player;
-        if (ticTacToe.gameValidation(ticTacToe.getBoard(), player) != null) {
-            model.addAttribute("winner", ticTacToe.gameValidation(ticTacToe.getBoard(), player));
-            ticTacToe = new TicTacToe();
-            model.addAttribute("gameBoard", ticTacToe.getBoard());
-            model.addAttribute("X", "true");
-            model.addAttribute("O", "false");
-            return "tictactoe";
+    @PostMapping(value = "/ticTacToe_Start/{owner}")
+    public String startTicTacToeGame(Model model,
+                                     @PathVariable String owner,
+                                     @ModelAttribute(name = "guest") String guest,
+                                     @ModelAttribute(name = "first_player") String firstPlayer) {
+        ticTacToe = new TicTacToe();
+        prepareGame(model, owner, guest, firstPlayer);
+        return "tictactoe";
+    }
+
+    @PostMapping(value = "/ticTacToe/{username}")
+    public String playTicTacToeGame(Model model,
+                                    @PathVariable String username,
+                                    @ModelAttribute(name = "board") int boardValue) {
+        playGame(model, username, boardValue);
+        return "tictactoe";
+    }
+
+    private void prepareGame(Model model,
+                             @PathVariable String owner,
+                             @ModelAttribute(name = "guest") String guest,
+                             @ModelAttribute(name = "first_player") String firstPlayer) {
+        ticTacToe.setGameOwner(owner);
+        ticTacToe.setGuest(guest);
+        model.addAttribute("gameBoard", ticTacToe.getBoard());
+        if (firstPlayer.equals("owner")) {
+            prepareModel(model, ticTacToe.getGameOwner());
         } else {
-            model.addAttribute("gameBoard", ticTacToe.getBoard());
-            if ("X".equalsIgnoreCase(player)) {
-                model.addAttribute("O", "true");
-                model.addAttribute("X", "false");
-            } else {
-                model.addAttribute("X", "true");
-                model.addAttribute("O", "false");
-            }
-            return "tictactoe";
+            prepareModel(model, ticTacToe.getGuest());
+        }
+    }
+
+    private void prepareModel(Model model, String player) {
+        model.addAttribute("message", "Ruch zawodnika: " + player);
+        model.addAttribute("player", player);
+    }
+
+
+    private void playGame(Model model,
+                          @PathVariable String username,
+                          @ModelAttribute(name = "board") int boardValue) {
+        ticTacToe.getBoard()[boardValue] = username;
+        ticTacToe.setGameSequence(ticTacToe.getGameSequence() + boardValue + "_" + username + " -> ");
+        model.addAttribute("gameBoard", ticTacToe.getBoard());
+        if (!username.equals(ticTacToe.getGameOwner())) {
+            prepareModel(model, ticTacToe.getGameOwner());
+        } else {
+            prepareModel(model, ticTacToe.getGuest());
+        }
+        if (ticTacToe.gameValidation(ticTacToe.getBoard(), username) != null) {
+            model.addAttribute("message", ticTacToe.gameValidation(ticTacToe.getBoard(), username));
+            model.addAttribute("avatar", userRepository.findUserByUsername(username).getAvatar());
+            ticTacToe.setWinner(username);
+            ticTacToe.setEndDate(LocalDateTime.now());
+            ticTacToe.setGameStatus(GameStatus.END);
+            ticTacToeRepository.save(ticTacToe);
+            model.addAttribute("guest", ticTacToe.getGuest());
         }
     }
 }
