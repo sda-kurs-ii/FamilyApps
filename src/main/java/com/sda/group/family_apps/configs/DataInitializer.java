@@ -53,7 +53,7 @@ public class DataInitializer implements InitializingBean {
         if (gameTypeRepository.count() == 0 ){
             GameType dobble = GameType.builder()
                     .name("Dobble")
-                    .description("Some quick example text to build on the card title and make up the bulk of the card's content.")
+                    .description("To gra, w której nie liczy się wiedza i umiejętności, ale spostrzegawczość, koncentracja i refleks!")
                     .image("https://www.panzabawka.pl/19867-large_default/rebel-dobb01pl-gra-karciana-dobble.jpg")
                     .maxPlayers(2)
                     .minPlayers(1)
@@ -63,7 +63,7 @@ public class DataInitializer implements InitializingBean {
 
             GameType ticTacToe = GameType.builder()
                     .name("TicTacToe")
-                    .description("To gra, w której nie liczy się wiedza i umiejętności, ale spostrzegawczość, koncentracja i refleks!")
+                    .description("Gra strategiczna rozgrywana przez dwóch graczy, najczęściej na kartce papieru w kratkę.")
                     .image("https://cdn.pixabay.com/photo/2013/07/12/15/56/tic-tac-toe-150614_960_720.png")
                     .minPlayers(1)
                     .maxPlayers(2)

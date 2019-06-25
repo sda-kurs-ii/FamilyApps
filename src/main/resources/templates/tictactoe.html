@@ -7,22 +7,44 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header-fragment"></div>
+<br>
+<H2 th:text="${message}" style="text-align: center; width: 100%"></H2>
 
-<H2 th:text="${winner}" style="align-content: center">Zapraszamy do gry</H2>
-<div id="game">
-    <form action="/ticTacToe" method="POST">
-        <input type="checkbox" name="player" value="X" th:checked="${X}" th:selected="${O}">X
-        <input type="checkbox" name="player" value="O" th:checked="${O}" th:selected="${X}">O
+
+<div th:if="${message.equals('Zapraszamy do gry')|| message.substring(0,4).equals('Zwyc')}" style="text-align: center">
+    <form th:action="${'/ticTacToe_Start/'+@userContext.provideUsername()}" method="POST">
+        <img style="height: 100px;width: 100px"
+             th:src="${avatar != null ? avatar : 'https://www.avatarys.com/downloadfullsize/send/2289'}">
         <br>
-        <div style="width: 150px; height: 150px; align-content: center">
-            <button th:each="item,iterStat : ${gameBoard}" name="board" th:value="${iterStat.index}" th:text="${item}"
-                    th:disabled="${item != null}"
-                    style="height: 50px; width: 50px">
-            </button>
-        </div>
+        <p style="font-size: 20px" th:text="${'Gospodarzem gry jest ' + @userContext.provideUsername()}"></p>
+        Gość:
+        <br>
+        <input type="text" name="guest" th:value="${guest != null ? guest :''}">
+        <br>
+        <input type="checkbox" name="first_player" value="owner">
+        <span style="color:gray;font-size: 12px">Zaznacz jeśli zaczyna gospodarz </span>
+        <br>
+        <br>
+        <button>
+            Rozpocznij nową grę
+        </button>
     </form>
 </div>
 
+<div id="game" th:if="${message.substring(0,4).equals('Ruch')}">
+    <form th:action="${'/ticTacToe/'+player}" action="/ticTacToe" method="POST">
+        <div style="width: 150px">
+            <div th:each="item,iterStat : ${gameBoard}" style="float: left; width: 50px; height: 50px">
+                <button name="board"
+                        th:value="${iterStat.index}"
+                        th:text="${item}"
+                        th:disabled="${item != null}"
+                        style="height: 50px; width: 50px">
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>
