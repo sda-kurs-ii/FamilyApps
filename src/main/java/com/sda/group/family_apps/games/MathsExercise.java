@@ -11,7 +11,7 @@ import java.util.Random;
 @Controller
 public class MathsExercise {
 
-    ExerciseDTO dTo;
+    ExerciseDTO exerciseDTO;
     Random random = new Random();
 
     @GetMapping(value = "/logicGames")
@@ -30,8 +30,26 @@ public class MathsExercise {
                         @ModelAttribute(value = "count") Integer count,
                         @ModelAttribute(value = "zakres") Integer maxZakres,
                         @ModelAttribute(value = "minZakres") Integer minZakres) {
-        dTo = new ExerciseDTO();
-        while (dTo.getZadania().size() < count) {
+        exerciseDTO = new ExerciseDTO();
+        prepareExercises(model, exerciseType, count, maxZakres, minZakres);
+        model.addAttribute("listaZadan", exerciseDTO);
+        return "mathsExercise";
+    }
+
+    @PostMapping(value = "/mathsExerciseCheck")
+    String check(Model model, @ModelAttribute(value = "zadania") ExerciseDTO zadania) {
+        int result = 0;
+        for (int i = 0; i < zadania.getZadania().size(); i++) {
+            if (exerciseDTO.getZadania().get(i).getResult().equals(zadania.getZadania().get(i).getUserResult())) {
+                result = result + 1;
+            }
+        }
+        model.addAttribute("finalResult", result);
+        return "mathsExercise";
+    }
+
+    private void prepareExercises(Model model, @ModelAttribute("type") String exerciseType, @ModelAttribute("count") Integer count, @ModelAttribute("zakres") Integer maxZakres, @ModelAttribute("minZakres") Integer minZakres) {
+        while (exerciseDTO.getZadania().size() < count) {
             Exercise exercise = new Exercise();
             exercise.setFirstNumber(random.nextInt(maxZakres));
             exercise.setSecondNumber(random.nextInt(maxZakres));
@@ -61,23 +79,8 @@ public class MathsExercise {
                     && exercise.getResult() <= maxZakres
                     && exercise.getResult() >= minZakres
                     && exercise.getFirstNumber()<=maxZakres) {
-                dTo.getZadania().add(exercise);
+                exerciseDTO.getZadania().add(exercise);
             }
         }
-        model.addAttribute("listaZadan", dTo);
-        return "mathsExercise";
-    }
-
-    @PostMapping(value = "/mathsExerciseCheck")
-    String check(Model model, @ModelAttribute(value = "zadania") ExerciseDTO zadania) {
-        int result = 0;
-        for (int i = 0; i < zadania.getZadania().size(); i++) {
-            if (dTo.getZadania().get(i).getResult().equals(zadania.getZadania().get(i).getUserResult())) {
-                result = result + 1;
-            }
-        }
-        model.addAttribute("finalResult", result);
-//        model.addAttribute("listaZadan", dTo);
-        return "mathsExercise";
     }
 }
