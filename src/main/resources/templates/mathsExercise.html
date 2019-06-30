@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadania Matematyczne</title>
+    <div th:replace="fragments/header :: headercss"></div>
+</head>
+<body>
+<div th:replace="fragments/header :: header-fragment"></div>
+
+<div id="wrapper">
+    <div id="left">
+        <h3>Wybierz parametry zadań</h3>
+        <form action="/mathsExercise" method="post">
+            <p>Zakres liczb (maksimum):
+                <input name="zakres" type="number" required>
+            </p>
+            <p>Zakres liczb (minimum):
+                <input name="minZakres" type="number" required>
+            </p>
+            <p>Ilość zadań:
+                <input name="count" type="number" required>
+            </p>
+            <p>Rodzaj zadań:<br>
+                <input name="type" type="radio" value="add" checked> dodawanie<br>
+                <input name="type" type="radio" value="subtract"> odejmowanie<br>
+                <input name="type" type="radio" value="multiply"> mnożenie<br>
+                <input name="type" type="radio" value="divide"> dzielenie<br>
+            </p>
+            <button>Przygotuj zadania</button>
+        </form>
+        <div id="res" th:if="${finalResult != null}">
+            <h2 th:text="${'Twój wynik to: ' + finalResult}"></h2>
+        </div>
+    </div>
+    <div id="right" th:if="${listaZadan != null}">
+        <form action="/mathsExerciseCheck" method="post" th:object="${listaZadan}">
+            <div id="exer" th:each="exercise, itemStat: *{zadania}">
+                <span th:text="${exercise.firstNumber +sign+exercise.secondNumber+' = '}"></span>
+                <input th:field="*{zadania[__${itemStat.index}__].userResult}">
+
+            </div>
+            <button style="float: right">Sprawdź poprawność</button>
+        </form>
+    </div>
+</div>
+<hr>
+</body>
+</html>
