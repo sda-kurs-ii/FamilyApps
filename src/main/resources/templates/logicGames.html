@@ -7,8 +7,17 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header-fragment"></div>
-
-<a href="/mathsExercise">Zadania matematyczne</a>
+<br>
+<div style="text-align: center; width: 100%"><h2> Wybierz zadanie.</h2></div>
+<div class="card" style="width: 18rem; float: left; margin: 10px">
+    <img src="https://www.pkt.pl/articles/1/g/3/f-4619-matematyka-rozwija-i-uczy-myslenia.jpg" class="card-img-top"
+         alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Zadania matematyczne</h5>
+        <p class="card-text">Możesz wybrać zakres oraz typ zadań oraz sprawdzić swój wynik.</p>
+        <a href="/mathsExercise" class="btn btn-primary">Rozwiąż zadania</a>
+    </div>
+</div>
 
 </body>
 </html>

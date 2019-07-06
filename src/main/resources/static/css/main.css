@@ -15,10 +15,9 @@ form {
     padding: 20px;
 }
 
-.game {
-    left: 50%;
+#game {
+    left: 40%;
     width: 10%;
-    margin-right: -50%;
 }
 
 body {
@@ -116,6 +115,7 @@ body {
     background-color: #4CAF50;
     color: white;
 }
+
 #wrapper {
     display: flex;
     padding: 20px;

@@ -10,11 +10,11 @@
 <br>
 <div style="text-align: center; width: 100%"><h2> Wybierz grę.</h2></div>
 <div th:each="gameType : ${gameTypeList}" class="card" style="width: 18rem; float: left; margin: 10px">
-    <img th:src="*{gameType.getImage()}"  class="card-img-top" alt="...">
+    <img th:src="*{gameType.getImage()}" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 th:text="*{gameType.name}" class="card-title"></h5>
-        <p th:text="*{gameType.description}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a th:href="*{gameType.gameHref}" class="btn btn-primary">Play the game</a>
+        <p th:text="*{gameType.description}" class="card-text"></p>
+        <a th:href="*{gameType.gameHref}" class="btn btn-primary">Zagraj w grę</a>
     </div>
 </div>
 
