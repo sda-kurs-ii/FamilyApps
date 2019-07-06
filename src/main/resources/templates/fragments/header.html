@@ -13,7 +13,7 @@
         <a href="/games">Gry</a>
         <a href="/logicGames">Zabawy logiczne</a>
         <a href="/languageGames">Kącik językowy</a>
-        <a href="/trip">Planer</a>
+        <a href="/coords">Coords</a>
         <a th:if="${@userContext.isLoggedIn()}" href="/shop">Sklep</a>
         <a th:if="${@userContext.isAdmin()}" href="/users/list">Lista użytkowników</a>
         <a th:if="!${@userContext.isLoggedIn()}" href="/register" style="float: right">Rejestracja</a>

@@ -31,9 +31,9 @@
     </form>
 </div>
 
-<div id="game" style="text-align: center; width: 100%; float: right" th:if="${message.substring(0,4).equals('Ruch')}">
-    <form th:action="${'/ticTacToe/'+player}" method="POST">
-        <div style="width: 150px">
+<div style="text-align: center; width: 100%" th:if="${message.substring(0,4).equals('Ruch')}">
+    <form style="text-align: center;width: 55%; float:right" th:action="${'/ticTacToe/'+player}" method="POST">
+        <div style="width: 150px;text-align: center">
             <div th:each="item,iterStat : ${gameBoard}" style="float: left; width: 50px; height: 50px">
                 <button name="board"
                         th:value="${iterStat.index}"
@@ -46,7 +46,7 @@
     </form>
 </div>
 
-<div th:if="${message.substring(0,4).equals('Remi')}">
+<div style="text-align: center; width: 100%" th:if="${message.substring(0,4).equals('Remi')}">
     <form action="/ticTacToe" method="GET">
         <button>Nowa Gra</button>
     </form>
